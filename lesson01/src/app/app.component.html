@@ -1,0 +1,18 @@
+<!--表单  -->
+<form class="ui large form segment">
+  <h3 class="ui header">添加投票项目</h3>
+  <div class="field">
+    <label for="title">标题：</label>
+    <input name="title" #newTitle>
+  </div>
+  <div class="field">
+    <label for="link">链接：</label>
+    <input name="link" #newLink>
+  </div>
+  <button class="ui positive right floated button" (click)="addArticle(newTitle,newLink)">提交</button>
+</form>
+
+<!--文章列表  -->
+<div class="ui grid posts">
+  <app-article *ngFor="let myArticle of sortedArticles()" [article]="myArticle"></app-article>
+</div>
