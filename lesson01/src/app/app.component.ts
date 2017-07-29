@@ -12,7 +12,7 @@ export class AppComponent {
       new Article('Alibaba', 'http://taobao.com', 10)
     ];
   }
-
+  
   addArticle(title : HTMLInputElement, link : HTMLInputElement) {
     console.log(`添加文章标题为：${title.value}，添加文章链接为：${link.value}`);
     this
