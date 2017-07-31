@@ -4,16 +4,14 @@
  * 2、imports：该模块的依赖模块
  * 3、bootstrap：该模块引导应用时的顶层组件
  */
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import {AppComponent} from './app.component';
-import {ArticleComponent} from './article/article.component';
+import { AppComponent } from "./app.component";
+import { ArticleComponent } from "./article/article.component";
 
 @NgModule({
-  declarations: [
-    AppComponent, ArticleComponent
-  ],
+  declarations: [AppComponent, ArticleComponent],
   imports: [BrowserModule],
   providers: [],
   bootstrap: [AppComponent]
