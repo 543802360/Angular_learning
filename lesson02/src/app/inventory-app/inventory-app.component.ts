@@ -24,21 +24,21 @@ class InventoryAppComponent implements OnInit {
       new Product(
         "Nike",
         "Nike Jordan",
-        "../../assets/images/products/black-shoes.jpg",
+        "/assets/images/products/black-shoes.jpg",
         ["Men", "shoes", "running shoes"],
         100.99
       ),
       new Product(
         "Hat",
         "A Nice Black Hat",
-        "../../assets/images/products/black-hat.jpg",
+        "/assets/images/products/black-hat.jpg",
         ["Men", "Accessories", "Hats"],
         30.99
       ),
       new Product(
         "Jacket",
         "A Nice Blue Jacket",
-        "../../assets/images/products/blue-jacket.jpg",
+        "/assets/images/products/blue-jacket.jpg",
         ["Women", "Apparel", "Jackets"],
         300
       )
