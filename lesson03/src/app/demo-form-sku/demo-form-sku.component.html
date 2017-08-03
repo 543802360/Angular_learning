@@ -1,0 +1,51 @@
+<div class="continer">
+  <form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+    <div class="form-group">
+      <label for="name" class="  col-md-2 control-label">姓名：</label>
+      <div class="col-md-8">
+        <input type="text" class="form-control" id="name" placeholder="请输入姓名" name="name" ngModel>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="age" class="col-md-2 control-label">年龄：</label>
+      <div class="col-md-8">
+        <input type="text" class="form-control" id="age" placeholder="请输入年龄" name="age" ngModel>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="sex" class="col-md-2 control-label">性别：</label>
+      <div class="col-md-8">
+        <input type="text" class="form-control" id="sex" placeholder="请输入性别" name="sex" ngModel>
+      </div>
+    </div>
+    <div class="col-md-offset-2 col-md-10 ">
+      <button type="submit" class="btn btn-primary ">提交</button>
+    </div>
+  </form>
+</div>
+<!--ng 内置指令  -->
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <div *ngIf="submitted">
+    <h3> 您的提交内容如下：</h3>
+    <br>
+    <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>性别</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of submitContent">
+          <td>{{p.name}}</td>
+          <td>{{p.age}}</td>
+          <td>{{p.sex}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
