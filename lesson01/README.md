@@ -1,28 +1,34 @@
 # lesson01
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
+Demo地址：
 
-## Development server
+## 安装依赖
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+npm install
+## 或者
+cnpm install
+```
 
-## Code scaffolding
+## 本地调试
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+```
+ng serve
+```
 
-## Build
+## 发布
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```
+ng build
 
-## Running unit tests
+```
+或者在package.json 中自定义脚本 "release": "ng build --prod --base-href /demo/ng-lesson01/"  
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+运行
 
-## Running end-to-end tests
+```
+npm run release
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## 问题
+angular/cli 不知哪个版本在build时有个bug，需将版本升级至最新版本，可以使用npm-check包进行依赖包的升级
