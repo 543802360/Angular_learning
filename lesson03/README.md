@@ -1,8 +1,8 @@
-# lesson01
+# lesson03
 
 Demo地址：[https://543802360.github.io/demo/ng-lesson03/index.html](https://543802360.github.io/demo/ng-lesson03/index.html)
 
-## 安装依赖
+## install dependencies
 
 ```
 npm install
@@ -10,13 +10,13 @@ npm install
 cnpm install
 ```
 
-## 本地调试
+## debug
 
 ```
 ng serve
 ```
 
-## 发布
+## build
 
 ```
 ng build
