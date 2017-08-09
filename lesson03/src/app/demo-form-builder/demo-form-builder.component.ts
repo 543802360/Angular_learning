@@ -18,6 +18,10 @@ export class DemoFormBuilderComponent implements OnInit {
   public name: AbstractControl;
   public age: AbstractControl;
   public sex: AbstractControl;
+
+  public inputName: string;
+  public inputAge: number;
+  public inputSex: string;
   /**
    * Creates an instance of DemoFormBuilderComponent.
    * 理解依赖注入。Angular会注入一个从FormBuilder类创建的对象实例，并把它赋值给了fb变量
@@ -31,11 +35,19 @@ export class DemoFormBuilderComponent implements OnInit {
       age: [, Validators.required],
       sex: ["", Validators.required]
     });
-    //formControl
+    //添加formControl类实例属性
     this.name = this.myForm.controls["name"];
     this.age = this.myForm.controls["age"];
     this.sex = this.myForm.controls["sex"];
-
+    //添加监听。subscribe相当于AddEventListener
+    this.name.valueChanges.subscribe((name: string) => {
+      this.inputName = `您输入的姓名为：${name}`;
+      console.log(this.inputName);
+    });
+    this.age.valueChanges.subscribe((age: number) => {
+      this.inputName = `您输入的年龄为：${age}`;
+      console.log(this.inputAge);
+    });
     this.submitContent = [];
     this.submitted = false;
   }
