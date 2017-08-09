@@ -1,0 +1,10 @@
+<h2 >Angular Http 简单示例</h2>
+<br>
+<div class="container">
+  <div class="row">
+    <button type="button" class="col-offset-md-2 col-md-2 btn btn-danger " (click)="makeRequest()">发起请求</button>
+  </div>
+  <br>
+  <div *ngIf="loading">loading</div>
+  <pre>{{data|json}}</pre>
+</div>
