@@ -1,25 +1,24 @@
 <div class="continer">
-  <h2 [ngStyle]="{'text-align':'center'}">第一个简单表单</h2>
+  <h2 [ngStyle]="{'text-align':'center'}">Angular FormBuilder表单</h2>
   <br>
-  <!--NgForm指令的选择器包含form标签，而不必显示添加ngForm属性(如input后显示添加 ngModel属性)。NgForm自动附加到视图中所有的form标签上
-  NgForm提供了两个重要功能  -->
-  <form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+  <!--表单  -->
+  <form class="form-horizontal" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
     <div class="form-group">
-      <label for="name" class="  col-md-2 control-label">姓名：</label>
+      <label for="name" class=" col-md-2 control-label">姓名：</label>
       <div class="col-md-8">
-        <input type="text" class="form-control" id="name" placeholder="请输入姓名" name="name" ngModel>
+        <input type="text" class="form-control" id="name" placeholder="请输入姓名" [formControl]="myForm.controls['name']">
       </div>
     </div>
     <div class="form-group">
-      <label for="age" class="col-md-2 control-label">年龄：</label>
+      <label for="name" class="  col-md-2 control-label">年龄：</label>
       <div class="col-md-8">
-        <input type="text" class="form-control" id="age" placeholder="请输入年龄" name="age" ngModel>
+        <input type="text" class="form-control" id="age" placeholder="请输入年龄" [formControl]="myForm.controls['age']">
       </div>
     </div>
     <div class="form-group">
-      <label for="sex" class="col-md-2 control-label">性别：</label>
+      <label for="name" class="  col-md-2 control-label">性别：</label>
       <div class="col-md-8">
-        <input type="text" class="form-control" id="sex" placeholder="请输入性别" name="sex" ngModel>
+        <input type="text" class="form-control" id="sex" placeholder="请输入性别" [formControl]="myForm.controls['sex']">
       </div>
     </div>
     <div class=container>
@@ -32,8 +31,8 @@
         </div>
       </div>
     </div>
-
   </form>
+
 </div>
 <!--ng 内置指令  -->
 <div class="container">
