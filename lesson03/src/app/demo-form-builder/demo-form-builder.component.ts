@@ -1,14 +1,23 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl
+} from "@angular/forms";
 @Component({
   selector: "demo-form-builder",
   templateUrl: "./demo-form-builder.component.html",
   styleUrls: ["./demo-form-builder.component.css"]
 })
 export class DemoFormBuilderComponent implements OnInit {
+  //类变量
   public myForm: FormGroup;
   public submitted: boolean;
   public submitContent: object[];
+  public name: AbstractControl;
+  public age: AbstractControl;
+  public sex: AbstractControl;
   /**
    * Creates an instance of DemoFormBuilderComponent.
    * 理解依赖注入。Angular会注入一个从FormBuilder类创建的对象实例，并把它赋值给了fb变量
@@ -18,16 +27,22 @@ export class DemoFormBuilderComponent implements OnInit {
    */
   constructor(public fb: FormBuilder) {
     this.myForm = fb.group({
-      name: ["布鲁斯"],
-      age: [26],
-      sex: ["男"]
+      name: ["", Validators.required],
+      age: [, Validators.required],
+      sex: ["", Validators.required]
     });
+    //formControl
+    this.name = this.myForm.controls["name"];
+    this.age = this.myForm.controls["age"];
+    this.sex = this.myForm.controls["sex"];
+
     this.submitContent = [];
     this.submitted = false;
   }
 
   onSubmit(value: object) {
-    console.log(`you submit value : ${value}`);
+    console.log(value);
+    //console.log(`you submit value : ${value}`);
     this.submitContent.push(value);
     this.submitted = true;
   }

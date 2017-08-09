@@ -3,34 +3,67 @@
   <br>
   <!--表单  -->
   <form class="form-horizontal" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+    <!--name  -->
     <div class="form-group">
       <label for="name" class=" col-md-2 control-label">姓名：</label>
       <div class="col-md-8">
         <input type="text" class="form-control" id="name" placeholder="请输入姓名" [formControl]="myForm.controls['name']">
       </div>
+      <div class="col-md-2">
+        <div *ngIf="!name.valid">
+          <div class="alert alert-danger" role="alert">
+            姓名必填
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!--age  -->
     <div class="form-group">
       <label for="name" class="  col-md-2 control-label">年龄：</label>
       <div class="col-md-8">
         <input type="text" class="form-control" id="age" placeholder="请输入年龄" [formControl]="myForm.controls['age']">
       </div>
+      <div class="col-md-2">
+        <div *ngIf="!age.valid">
+          <div class="alert alert-danger" role="alert">
+            年龄必填
+          </div>
+        </div>
+      </div>
     </div>
+    <!--sex  -->
     <div class="form-group">
       <label for="name" class="  col-md-2 control-label">性别：</label>
       <div class="col-md-8">
         <input type="text" class="form-control" id="sex" placeholder="请输入性别" [formControl]="myForm.controls['sex']">
       </div>
-    </div>
-    <div class=container>
-      <div class="row">
-        <div class="col-md-offset-2 col-md-2">
-          <button type="submit" class="btn btn-primary btn-block">提交</button>
-        </div>
-        <div class="col-md-offset-4 col-md-2">
-          <button type="button" class="btn btn-primary btn-block" (click)="clearSubmitted()">清除</button>
+      <div class="col-md-2">
+        <div *ngIf="!sex.valid">
+          <div class="alert alert-danger" role="alert">
+            性别必填
+          </div>
         </div>
       </div>
     </div>
+    <!-- <div *ngIf="!myForm.valid">
+      <div class="alert alert-danger" role="alert">
+        表单无效
+      </div>
+    </div> -->
+    <div *ngIf="myForm.valid">
+      <div class=container>
+        <div class="row">
+          <div class="col-md-offset-2 col-md-2">
+            <button type="submit" class="btn btn-primary btn-block">提交</button>
+          </div>
+          <div class="col-md-offset-4 col-md-2">
+            <button type="button" class="btn btn-primary btn-block" (click)="clearSubmitted()">清除</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </form>
 
 </div>
