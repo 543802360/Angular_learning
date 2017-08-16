@@ -7,5 +7,5 @@ Angular-leaflet实例，尝试使用阿里刚开源的ng-zorro（ng佐罗组件�
 
 ### Demo地址：
 
-[https://543802360.github.io/demo/ng-leafletÏ](https://543802360.github.io/demo/ng-leaflet)  
+[https://543802360.github.io/demo/ng-leaflet](https://543802360.github.io/demo/ng-leaflet)  
 
