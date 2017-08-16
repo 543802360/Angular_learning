@@ -11,7 +11,7 @@
     "e2e": "ng e2e",
     "debug": "ng serve --port 10010 --open",
     "db-aot": "ng serve --port 10010 --open --aot",
-    "release": "ng build --prod --base-href ./"
+    "release": "ng build --prod --base-href  /demo/ng-leaflet/"
   },
   "private": true,
   "dependencies": {
@@ -32,9 +32,10 @@
     "@angular/cli": "1.2.6",
     "@angular/compiler-cli": "^4.0.0",
     "@angular/language-service": "^4.0.0",
+    "@asymmetrik/angular2-leaflet": "^2.2.0",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
-    "@types/node": "~6.0.60",
+    "@types/node": "^8.0.22",
     "codelyzer": "~3.0.1",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
