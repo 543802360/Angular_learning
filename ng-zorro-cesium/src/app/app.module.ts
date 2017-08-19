@@ -5,12 +5,19 @@ import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { NgZorroAntdModule } from "ng-zorro-antd";
 import { AppComponent } from "./app.component";
-import { MainComponent } from "./layout/main/main.component";
+import { LayoutComponent } from "./layout/layout.component";
+import { ViewerComponent } from "./viewer/viewer.component";
+import { CesiumViewerDirective } from "./viewer/cesium-viewer.directive";
 
 //导入leaflet
 
 @NgModule({
-  declarations: [AppComponent, MainComponent],
+  declarations: [
+    AppComponent,
+    LayoutComponent,
+    ViewerComponent,
+    CesiumViewerDirective
+  ],
   imports: [
     BrowserModule,
     FormsModule,

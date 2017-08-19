@@ -29,10 +29,10 @@
 :host ::ng-deep .trigger:hover {
   color: #108ee9;
 }
-#map {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+qk-earth-viewer {
   width: 100%;
   height: 100%;
+}
+nz-content{
+  height:100%;
 }
