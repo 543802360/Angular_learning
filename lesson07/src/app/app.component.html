@@ -1,0 +1,20 @@
+<h2>显示数据：</h2>
+<app-data-display></app-data-display>
+<br>
+<hr>
+<br>
+<!-- <app-sizer [(size)]="fontSizePx"></app-sizer> -->
+<div class="container">
+  <div class="row">
+    <app-sizer [size]="fontSizePx" (sizeChanged)="fontSizePx=$event"></app-sizer>
+    <!-- <app-sizer [(size)]="fontSizePx"></app-sizer> -->
+
+  </div>
+  <div class="row" [style.margin-top.px]="25">
+    <div class="col-offset-md-3">
+      <p [style.font-size.px]="fontSizePx">我是双向绑定的父组件，我随着按钮点击变更大小</p>
+    </div>
+  </div>
+</div>
+<br>
+<app-votetaker></app-votetaker>

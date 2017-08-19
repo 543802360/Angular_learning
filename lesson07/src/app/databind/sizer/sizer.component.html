@@ -1,0 +1,17 @@
+<hr>
+<h2 >数据双向绑定</h2>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <button on-click="dec()" type="button" class="btn btn-primary">smaller</button>
+    </div>
+    <div class="col-md-2">
+      <button (click)="inc()" type="button" class="btn btn-danger">larger</button>
+    </div>
+    <div class="col-md-6">
+      <label [style.font-size.px]="size">我是双向绑定的子组件，我跟着按钮变化大小</label>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<hr>
+<h2>父组件监听子组件的事件</h2>
+<h2>谁当选MVP</h2>
+<h3>同意: {{agreed}}, 反对: {{disagreed}}</h3>
+<app-voter *ngFor="let voter of voters" [name]="voter" (onVoted)="onVoted($event)">
+</app-voter>

@@ -1,0 +1,12 @@
+<h2>
+  NBA Players</h2>
+<h3>My favorite NBA Player Is {{myFavorPlayer.name}}</h3>
+<p>Players</p>
+<ul>
+  <li *ngFor="let player of players">
+    {{player.name}}--{{player.team}}
+  </li>
+</ul>
+
+<br>
+<p *ngIf="players.length>4">There are to many players</p>
