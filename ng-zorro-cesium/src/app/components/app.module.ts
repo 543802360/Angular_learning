@@ -8,7 +8,9 @@ import { AppComponent } from "./app.component";
 import { LayoutComponent } from "./layout/layout.component";
 import { ViewerComponent } from "./viewer/viewer.component";
 import { CesiumViewerDirective } from "./viewer/cesium-viewer.directive";
-
+import { ViewerFactoryService } from "../services/viewer-factory/viewer-factory.service";
+import { CesiumService } from "../services/cesium/cesium.service";
+import { ScenesettingComponent } from './scenesetting/scenesetting.component';
 //导入leaflet
 
 @NgModule({
@@ -16,7 +18,8 @@ import { CesiumViewerDirective } from "./viewer/cesium-viewer.directive";
     AppComponent,
     LayoutComponent,
     ViewerComponent,
-    CesiumViewerDirective
+    CesiumViewerDirective,
+    ScenesettingComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import { CesiumViewerDirective } from "./viewer/cesium-viewer.directive";
     BrowserAnimationsModule,
     NgZorroAntdModule.forRoot()
   ],
+  providers: [ViewerFactoryService, CesiumService], //服务提供商
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,3 +1,4 @@
+import { CesiumService } from "../../services/cesium/cesium.service";
 import {
   Directive,
   ElementRef,
@@ -10,21 +11,22 @@ import {
   selector: "qkEarthCesiumViewer"
 })
 export class CesiumViewerDirective implements OnInit {
+  /**
+   *
+   * 输入属性。场景配置项
+   * @type {*}
+   * @memberof CesiumViewerDirective
+   */
   @Input() options: any;
   public viewer: any;
-  //注入ElementRef依赖
-  constructor(private el: ElementRef) {}
+  //注入ElementRef、CesiumService
+  constructor(private el: ElementRef, private cesiumService: CesiumService) {}
 
   ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    Cesium.Camera.DEFAULT_VIEW_RECTANGLE = new Cesium.Rectangle.fromDegrees(
-      75.0,
-      -30.0,
-      130.0,
-      90.0
-    );
-    Cesium.Camera.DEFAULT_VIEW_FACTOR = 0;
-    this.viewer = new Cesium.Viewer(this.el.nativeElement, this.options);
+
+    this.cesiumService.init(this.el.nativeElement, this.options);
+    this.viewer=this.cesiumService.getViewer();
   }
 }
