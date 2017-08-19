@@ -19,13 +19,15 @@
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
+      "prefix": "qk-earth",
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "styles": [
-        "styles.css",
         "../node_modules/cesium/Build/Cesium/Widgets/widgets.css",
-        "../node_modules/leaflet/dist/leaflet.css"
+        "../node_modules/leaflet/dist/leaflet.css",
+        "styles.css"
+
       ],
       "scripts": [
         "../node_modules/cesium/Build/Cesium/Cesium.js",
