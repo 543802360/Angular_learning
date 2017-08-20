@@ -1,1 +1,17 @@
-<li nz-menu-item (click)="test()">测试Cesium服务</li>
+<!-- <li nz-menu-item (click)="test()">测试Cesium服务</li> -->
+<!-- CheckBox组 -->
+<div>
+  <nz-checkbox-group [(ngModel)]="sceneOptions" (ngModelChange)="updateScene(sceneOptions)"></nz-checkbox-group>
+</div>
+<!-- 单个CheckBox -->
+<!-- <div>
+  <label nz-checkbox [(ngModel)]="atmosphereEnabled" (ngModelChange)="updateScene($event)">
+    <span>大气</span>
+  </label>
+  <label nz-checkbox [(ngModel)]="lightingEnabled" (ngModelChange)="updateScene($event)">
+    <span>光照</span>
+  </label>
+  <label nz-checkbox [(ngModel)]="fogEnabled" (ngModelChange)="updateScene($event)">
+    <span>雾</span>
+  </label>
+</div> -->
