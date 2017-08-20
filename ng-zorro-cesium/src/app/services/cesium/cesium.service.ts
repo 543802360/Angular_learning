@@ -9,7 +9,7 @@ import { Injectable } from "@angular/core";
  */
 @Injectable()
 export class CesiumService {
-  private cesiumViewer: any;
+  public cesiumViewer: any;
   constructor(private viewerFactory: ViewerFactoryService) {}
 
   /**

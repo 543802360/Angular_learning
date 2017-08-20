@@ -20,13 +20,16 @@ export class CesiumViewerDirective implements OnInit {
   @Input() options: any;
   public viewer: any;
   //注入ElementRef、CesiumService
-  constructor(private el: ElementRef, private cesiumService: CesiumService) {}
+  constructor(private el: ElementRef, private cesiumService: CesiumService) {
+    //
+    console.log("cesium-viewer.directive中的cesiumService:", cesiumService);
+  }
 
   ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
 
     this.cesiumService.init(this.el.nativeElement, this.options);
-    this.viewer=this.cesiumService.getViewer();
+    this.viewer = this.cesiumService.getViewer();
   }
 }
