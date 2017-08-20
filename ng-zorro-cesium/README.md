@@ -25,3 +25,26 @@ Angular搭建Cesium开发平台，使用ng-zorro组件可和primeng组件库对C
 
 [https://543802360.github.io/demo/ng-zorro-cesium](https://543802360.github.io/demo/ng-zorro-cesium/index.html)  
 
+---
+
+### 使用
+
+安装依赖
+```
+npm install
+## or 
+cnpm install
+
+```
+
+debug
+
+```
+npm run debug
+```
+
+release
+
+```
+npm run release
+```
