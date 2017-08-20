@@ -1,11 +1,27 @@
-# NgZorroDemo
+# NgZorroCesium
 
-Angular-leaflet实例，尝试使用阿里刚开源的ng-zorro（ng佐罗组件库）。前段时间一直在看书，尝试写小栗子，基本概念懂了一些，要开始多写了。  
+Angular搭建Cesium开发平台，使用ng-zorro组件可和primeng组件库对Cesium进行上层的封装。目前构建了四个组件和两个服务  
+
+---
+
+## 组件
+
+- layout组件
+- viewer组件
+- scenesetting组件
+- layertree组件（未完成）
+
+## 服务
+
+- cesiumservice
+- viewerfactory
 
 ### 参考链接
 [NG-Zorro](https://ng.ant.design/)  
+[PrimeNG](https://www.primefaces.org/primeng/#/)  
+
 
 ### Demo地址：
 
-[https://543802360.github.io/demo/ng-leaflet](https://543802360.github.io/demo/ng-leaflet)  
+[https://543802360.github.io/demo/ng-zorro-cesium](https://543802360.github.io/demo/ng-zorro-cesium/index.html)  
 
