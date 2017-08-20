@@ -13,22 +13,13 @@ import {
 })
 export class ScenesettingComponent implements OnInit, OnChanges, AfterViewInit {
   public viewer: any;
-  // public atmosphereEnabled: boolean;
-  // public lightingEnabled: boolean;
-  // public fogEnabled: boolean;
-
   public sceneOptions = [
     { label: "大气", value: "atmosphere", checked: true },
     { label: "光照", value: "lighting", checked: false },
     { label: "雾", value: "fog", checked: true }
   ];
 
-  constructor(private cesiumService: CesiumService) {
-    // this.atmosphereEnabled = true;
-    // this.lightingEnabled = false;
-    // this.fogEnabled = true;
-    // console.log("scenesetting构造函数中的cesiumService:", this.cesiumService);
-  }
+  constructor(private cesiumService: CesiumService) {}
   /**
    * 更新场景设置
    *
@@ -58,16 +49,11 @@ export class ScenesettingComponent implements OnInit, OnChanges, AfterViewInit {
    * @memberof ScenesettingComponent
    *
    */
-  ngOnInit() {
-    console.log("scenesetting ngOnInit中的cesiumService:", this.cesiumService);
-  }
-  ngOnChanges(changes: SimpleChanges) {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    console.log(changes);
-  }
+  ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges) {}
+
   ngAfterViewInit() {
     this.viewer = this.cesiumService.getViewer();
-    console.log("scenesetting ngAfterViewInit中的cesiumService:", this.viewer);
   }
 }
