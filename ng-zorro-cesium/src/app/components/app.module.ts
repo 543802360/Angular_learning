@@ -11,6 +11,7 @@ import { CesiumViewerDirective } from "./viewer/cesium-viewer.directive";
 import { ViewerFactoryService } from "../services/viewer-factory/viewer-factory.service";
 import { CesiumService } from "../services/cesium/cesium.service";
 import { ScenesettingComponent } from './scenesetting/scenesetting.component';
+import { LayerTreeComponent } from './layer-tree/layer-tree.component';
 //导入leaflet
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ScenesettingComponent } from './scenesetting/scenesetting.component';
     LayoutComponent,
     ViewerComponent,
     CesiumViewerDirective,
-    ScenesettingComponent
+    ScenesettingComponent,
+    LayerTreeComponent
   ],
   imports: [
     BrowserModule,
