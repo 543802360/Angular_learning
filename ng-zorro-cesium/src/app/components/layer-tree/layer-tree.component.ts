@@ -26,31 +26,55 @@ export class LayerTreeComponent implements OnInit, AfterViewInit {
     private cesiumService: CesiumService
   ) {}
 
+  /**
+   *组件初始化声明周期钩子函数
+   *
+   * @memberof LayerTreeComponent
+   */
   ngOnInit() {
     this.treeNodes = this.layerService.getLayerTreeNodes();
   }
+  /**
+   * 组件及其子组件初始化完成声明周期钩子函数
+   *
+   * @memberof LayerTreeComponent
+   */
   ngAfterViewInit() {
     this.viewer = this.cesiumService.getViewer();
   }
 
+  /**
+   * 树节点选中事件处理函数
+   *
+   * @param {any} event
+   * @memberof LayerTreeComponent
+   */
   treeNodeSelect(event) {
     console.log(event);
     this.viewer.imageryLayers.addImageryProvider(
       this.layerService.getImageryProviderByName(event.node.label)
     );
   }
+  /**
+   * 树节点取消选中事件处理函数
+   *
+   * @param {any} event
+   * @memberof LayerTreeComponent
+   */
   treeNodeUnSelect(event) {
     console.log(event);
-    this.viewer.imageryLayers.remove(this.getLayerByName(event.node.label));
+    this.viewer.imageryLayers.remove(
+      this.layerService.getImageryLayerByName(event.node.label)
+    );
   }
 
-  getLayerByName(layerName: string) {
-    let layer = null;
-    this.viewer.imageryLayers._layers.forEach(el => {
-      if (el.imageryProvider.credit.text === layerName) {
-        layer = el;
-      }
-    });
-    return layer;
-  }
+  // getLayerByName(layerName: string) {
+  //   let layer = null;
+  //   this.viewer.imageryLayers._layers.forEach(el => {
+  //     if (el.imageryProvider.credit.text === layerName) {
+  //       layer = el;
+  //     }
+  //   });
+  //   return layer;
+  // }
 }
