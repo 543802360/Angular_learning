@@ -5,17 +5,18 @@
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
       <li nz-submenu>
-        <span title><i class="anticon anticon-setting"></i><span class="nav-text">场景设置</span></span>
-        <ul>
-          <qk-earth-scenesetting></qk-earth-scenesetting>
-        </ul>
-      </li>
-      <li nz-submenu>
         <span title><i class="anticon anticon-team"></i><span class="nav-text">场景树</span></span>
         <ul>
           <qk-earth-layer-tree></qk-earth-layer-tree>
         </ul>
       </li>
+      <li nz-submenu>
+        <span title><i class="anticon anticon-setting"></i><span class="nav-text">场景设置</span></span>
+        <ul>
+          <qk-earth-scenesetting></qk-earth-scenesetting>
+        </ul>
+      </li>
+
       <li nz-submenu>
         <span title><i class="anticon anticon-heart"></i><span class="nav-text">关于</span></span>
         <ul>
