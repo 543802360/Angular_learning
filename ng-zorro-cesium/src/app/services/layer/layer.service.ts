@@ -1,6 +1,11 @@
 import { Injectable } from "@angular/core";
 
-import { ImageryProviders, LayerTreeNodes } from "./layers";
+import {
+  ImageryProviders,
+  LayerTreeNodes,
+  ImageryProviderVMS,
+  terrainProviderVMS
+} from "./layers";
 import { CesiumService } from "../cesium/cesium.service";
 
 @Injectable()
@@ -14,6 +19,17 @@ export class LayerService {
    */
   getLayerTreeNodes(): object[] {
     return LayerTreeNodes;
+  }
+
+  getImageryProviders(): object {
+    return ImageryProviders;
+  }
+  getImageryProviderVMS() {
+    return ImageryProviderVMS;
+  }
+
+  getterrainProviderVMS() {
+    return terrainProviderVMS;
   }
   /**
    *
