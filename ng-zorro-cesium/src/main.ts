@@ -8,8 +8,8 @@ if (environment.production) {
   enableProdMode();
 }
 //build时不设置base_href
-window["CESIUM_BASE_URL"] = "/assets/cesium";
+//window["CESIUM_BASE_URL"] = "/assets/cesium";
 //build时设置base_href属性
-//window["CESIUM_BASE_URL"] = "/demo/ng-zorro-cesium/assets/cesium";
+window["CESIUM_BASE_URL"] = "/demo/ng-zorro-cesium/assets/cesium";
 
 platformBrowserDynamic().bootstrapModule(AppModule);
