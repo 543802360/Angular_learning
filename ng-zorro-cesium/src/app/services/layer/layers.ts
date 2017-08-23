@@ -1,3 +1,5 @@
+//const baseHref = "/demo/ng-zorro-cesium/";
+const baseHref = "/";
 const tdtImgProvider = new Cesium.WebMapTileServiceImageryProvider({
   url:
     "http://{s}.tianditu.com/img_w/wmts?service=WMTS&version=1.0.0&request=GetTile&tilematrix={TileMatrix}&layer=img&style={style}&tilerow={TileRow}&tilecol={TileCol}&tilematrixset={TileMatrixSet}&format=tiles",
@@ -86,31 +88,85 @@ const googleImgProvider = new Cesium.UrlTemplateImageryProvider({
   maximumLevel: 22
 });
 
+/**
+ *
+ */
+
+const tdtImgPVM = new Cesium.ProviderViewModel({
+  name: "天地图影像",
+  iconUrl: baseHref + "assets/images/tdtImg.png",
+  tooltip: "天地图影像",
+  creationFunction: function() {
+    return tdtImgProvider;
+  }
+});
+
+const tdtVecPVM = new Cesium.ProviderViewModel({
+  name: "天地图矢量",
+  iconUrl: baseHref + "assets/images/tdtVec.png",
+  tooltip: "天地图矢量",
+  creationFunction: function() {
+    return tdtVecProvider;
+  }
+});
+
+const tdtTerPVM = new Cesium.ProviderViewModel({
+  name: "天地图地形",
+  iconUrl: baseHref + "assets/images/tdtTer.png",
+  tooltip: "天地图地形",
+  creationFunction: function() {
+    return tdtTerProvider;
+  }
+});
+const googleImgPVM = new Cesium.ProviderViewModel({
+  name: "谷歌影像",
+  iconUrl: baseHref + "assets/images/googleImg.png",
+  tooltip: "谷歌影像",
+  creationFunction: function() {
+    return googleImgProvider;
+  }
+});
+const ImageryProviderVMS = [googleImgPVM, tdtImgPVM, tdtVecPVM, tdtTerPVM];
+const terrainProviderPVM = new Cesium.ProviderViewModel({
+  name: "地形",
+  tooltip: "地形",
+  iconUrl: baseHref + "assets/images/googleImg.png",
+  creationFunction: function() {
+    return new Cesium.CesiumTerrainProvider({
+      url: "https://assets.agi.com/stk-terrain/world",
+      requestWaterMask: true, // required for water effects
+      requestVertexNormals: true
+    });
+  }
+});
+const terrainProviderVMS = [terrainProviderPVM];
+
+/**
+ * 地表覆盖
+ */
+const landcover = new Cesium.WebMapServiceImageryProvider({
+  url: "http://218.244.250.80:8080/erdas-apollo/coverage/CGLC",
+  layers: "cglc30_2010_0",
+  parameters: {
+    transparent: true,
+    format: "image/png"
+  },
+  credit: new Cesium.Credit("地表覆盖"),
+  proxy: new Cesium.DefaultProxy("/proxy/")
+});
+
+const ImageryProviders = {
+  地表覆盖: landcover,
+  谷歌影像: googleImgProvider,
+  天地图影像: tdtImgProvider,
+  天地图矢量: tdtVecProvider,
+  天地图地形: tdtTerProvider,
+  天地图影像注记: tdtImgAnnoProvider,
+  天地图矢量注记: tdtVecAnnoProvider,
+  天地图地形注记: tdtTerAnnoProvider
+};
+
 const LayerTreeNodes = [
-  {
-    label: "谷歌影像",
-    expandedIcon: "fa-folder-open",
-    collapsedIcon: "fa-folder",
-    leaf: true
-  },
-  {
-    label: "天地图影像",
-    expandedIcon: "fa-folder-open",
-    collapsedIcon: "fa-folder",
-    leaf: true
-  },
-  {
-    label: "天地图矢量",
-    expandedIcon: "fa-folder-open",
-    collapsedIcon: "fa-folder",
-    leaf: true
-  },
-  {
-    label: "天地图地形",
-    expandedIcon: "fa-folder-open",
-    collapsedIcon: "fa-folder",
-    leaf: true
-  },
   {
     label: "注记图层",
     expandedIcon: "fa-folder-open",
@@ -135,68 +191,22 @@ const LayerTreeNodes = [
         leaf: true
       }
     ]
+  },
+  {
+    label: "专题图层",
+    expandedIcon: "fa-folder-open",
+    collapsedIcon: "fa-folder",
+    children: [
+      {
+        label: "地表覆盖",
+        expandedIcon: "fa-folder-open",
+        collapsedIcon: "fa-folder",
+        leaf: true
+      }
+    ]
   }
 ];
-const ImageryProviders = {
-  谷歌影像: googleImgProvider,
-  天地图影像: tdtImgProvider,
-  天地图矢量: tdtVecProvider,
-  天地图地形: tdtTerProvider,
-  天地图影像注记: tdtImgAnnoProvider,
-  天地图矢量注记: tdtVecAnnoProvider,
-  天地图地形注记: tdtTerAnnoProvider
-};
 
-/**
- *
- */
-
-const tdtImgPVM = new Cesium.ProviderViewModel({
-  name: "天地图影像",
-  iconUrl: "../../../assets/images/tdtImg.png",
-  tooltip: "天地图影像",
-  creationFunction: function() {
-    return tdtImgProvider;
-  }
-});
-
-const tdtVecPVM = new Cesium.ProviderViewModel({
-  name: "天地图矢量",
-  iconUrl: "../../../assets/images/tdtVec.png",
-  tooltip: "天地图矢量",
-  creationFunction: function() {
-    return tdtVecProvider;
-  }
-});
-
-const tdtTerPVM = new Cesium.ProviderViewModel({
-  name: "天地图地形",
-  iconUrl: "../../../assets/images/tdtTer.png",
-  tooltip: "天地图地形",
-  creationFunction: function() {
-    return tdtTerProvider;
-  }
-});
-const googleImgPVM = new Cesium.ProviderViewModel({
-  name: "谷歌影像",
-  iconUrl: "../../../assets/images/googleImg.png",
-  tooltip: "谷歌影像",
-  creationFunction: function() {
-    return googleImgProvider;
-  }
-});
-const ImageryProviderVMS = [googleImgPVM, tdtImgPVM, tdtVecPVM, tdtTerPVM];
-const terrainProviderPVM = new Cesium.ProviderViewModel({
-  name: "地形",
-  tooltip: "地形",
-  iconUrl: "../../../assets/images/googleImg.png",
-  creationFunction: function() {
-    return new Cesium.CesiumTerrainProvider({
-      url: "http://web.earthg.cn/dem"
-    });
-  }
-});
-const terrainProviderVMS = [terrainProviderPVM];
 export {
   LayerTreeNodes,
   ImageryProviders,
