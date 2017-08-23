@@ -26,7 +26,7 @@ export class ViewerComponent implements OnInit {
       geocoder: true,
       homeButton: true,
       imageryProviderViewModels: this.layerService.getImageryProviderVMS(),
-      terrainProviderViewModels: this.layerService.getterrainProviderVMS(),
+      terrainProviderViewModels: [],
       infoBox: true,
       mapProjection: new Cesium.GeographicProjection(),
       navigationHelpButton: true,
