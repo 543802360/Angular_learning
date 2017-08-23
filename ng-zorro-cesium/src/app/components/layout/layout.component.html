@@ -4,21 +4,52 @@
     <div class="logo">
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
+      <!-- 场景图层目录 -->
       <li nz-submenu>
-        <span title><i class="anticon anticon-team"></i><span class="nav-text">场景树</span></span>
+        <span title><i class="anticon anticon-global"></i><span class="nav-text">场景图层目录</span></span>
         <ul>
           <qk-earth-layer-tree></qk-earth-layer-tree>
         </ul>
       </li>
+      <!-- 专题数据服务 -->
+      <li nz-submenu>
+        <span title><i class="anticon anticon-team"></i><span class="nav-text">专题数据服务</span></span>
+        <ul>
+          <!-- <qk-earth-layer-tree></qk-earth-layer-tree> -->
+          <qk-earth-overlayer-tree></qk-earth-overlayer-tree>
+        </ul>
+      </li>
+      <!-- 场景设置 -->
       <li nz-submenu>
         <span title><i class="anticon anticon-setting"></i><span class="nav-text">场景设置</span></span>
         <ul>
           <qk-earth-scenesetting></qk-earth-scenesetting>
         </ul>
       </li>
-
+      <!-- 标绘 -->
       <li nz-submenu>
-        <span title><i class="anticon anticon-heart"></i><span class="nav-text">关于</span></span>
+        <span title><i class="anticon anticon-edit"></i><span class="nav-text">标绘</span></span>
+        <ul>
+          <qk-earth-draw></qk-earth-draw>
+        </ul>
+      </li>
+      <!-- 量测 -->
+      <li nz-submenu>
+        <span title><i class="anticon anticon-share-alt"></i><span class="nav-text">量测</span></span>
+        <ul>
+          <qk-earth-measure></qk-earth-measure>
+        </ul>
+      </li>
+      <!-- 帮助 -->
+      <li nz-submenu>
+        <span title><i class="anticon anticon-question-circle"></i><span class="nav-text">帮助</span></span>
+        <ul>
+          <qk-earth-help></qk-earth-help>
+        </ul>
+      </li>
+      <!-- 关于 -->
+      <li nz-submenu>
+        <span title><i class="anticon anticon-info-circle"></i><span class="nav-text">关于</span></span>
         <ul>
           <li nz-menu-item><span><i class="anticon anticon-github"></i> <span class="nav-text"><a href="https://543802360.github.io/">my Github</a></span>            </span>
           </li>
