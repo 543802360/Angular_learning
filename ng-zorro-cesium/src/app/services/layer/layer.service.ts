@@ -24,6 +24,12 @@ export class LayerService {
   getImageryProviders(): object {
     return ImageryProviders;
   }
+  /**
+   *
+   *
+   * @returns
+   * @memberof LayerService
+   */
   getImageryProviderVMS() {
     return ImageryProviderVMS;
   }
