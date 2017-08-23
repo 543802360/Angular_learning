@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
-import { TreeNode } from "primeng/primeng";
+import { TreeNode, MenuItem } from "primeng/primeng";
 
 import { LayerService } from "../../services/layer/layer.service";
 import { CesiumService } from "../../services/cesium/cesium.service";
@@ -9,17 +9,34 @@ import { CesiumService } from "../../services/cesium/cesium.service";
   template: `
      <p-tree [value]="treeNodes" selectionMode="checkbox"
       [(selection)]="selectedNodes"
+      [contextMenu]="cm"
       [propagateSelectionUp]="true"
       [propagateSelectionDown]="true"
       (onNodeSelect)="treeNodeSelect($event)"
       (onNodeUnselect)="treeNodeUnSelect($event)">
       </p-tree>
+      <p-contextMenu #cm [model]="items"></p-contextMenu>
   `,
   styleUrls: ["./layer-tree.component.css"]
 })
 export class LayerTreeComponent implements OnInit, AfterViewInit {
+  //tree
   public treeNodes: TreeNode[]; //场景树节点集
   public selectedNodes: TreeNode[];
+
+  //menu
+  public items: MenuItem[] = [
+    { label: "图层置顶", icon: "fa-plus" },
+    { label: "图层下移", icon: "fa-download" },
+    { label: "图层上移", icon: "fa-refresh" },
+    { label: "移除图层", icon: "fa-refresh" },
+
+    {
+      label: "设置图层样式",
+      icon: "fa-refresh"
+    }
+  ];
+
   public viewer: any;
   public imageryLayers: any;
   constructor(
@@ -43,16 +60,6 @@ export class LayerTreeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.viewer = this.cesiumService.getViewer();
     this.imageryLayers = this.viewer.imageryLayers;
-    //注册图层监听事件
-    this.imageryLayers.layerAdded.addEventListener(
-      this.layerAddedEventListener
-    );
-    this.imageryLayers.layerMoved.addEventListener(
-      this.layerMovedEventListener
-    );
-    this.imageryLayers.layerRemoved.addEventListener(
-      this.layerRemovedEventListener
-    );
 
     this.treeNodes = this.imageryLayers._layers.map(layer => {
       return {
@@ -63,12 +70,34 @@ export class LayerTreeComponent implements OnInit, AfterViewInit {
         selectable: true
       };
     });
+    //注册图层监听事件
+    this.imageryLayers.layerAdded.addEventListener(
+      this.updateLayerTreeNodes,
+      this
+    );
+    this.imageryLayers.layerMoved.addEventListener(
+      this.updateLayerTreeNodes,
+      this
+    );
+    this.imageryLayers.layerRemoved.addEventListener(
+      this.updateLayerTreeNodes,
+      this
+    );
   }
 
-  layerAddedEventListener() {}
-
-  layerMovedEventListener() {}
-  layerRemovedEventListener() {}
+  updateLayerTreeNodes() {
+    this.treeNodes = this.cesiumService
+      .getViewer()
+      .imageryLayers._layers.map(layer => {
+        return {
+          label: layer.imageryProvider.credit.text,
+          expandedIcon: "fa-folder-open",
+          collapsedIcon: "fa-folder",
+          leaf: true,
+          selectable: true
+        };
+      });
+  }
   /**
    * 树节点选中事件处理函数
    *
