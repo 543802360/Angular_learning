@@ -1,4 +1,10 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  AfterViewChecked,
+  AfterContentInit
+} from "@angular/core";
 import { TreeNode, MenuItem } from "primeng/primeng";
 
 import { LayerService } from "../../services/layer/layer.service";
@@ -19,7 +25,8 @@ import { CesiumService } from "../../services/cesium/cesium.service";
   `,
   styleUrls: ["./layer-tree.component.css"]
 })
-export class LayerTreeComponent implements OnInit, AfterViewInit {
+export class LayerTreeComponent
+  implements OnInit, AfterViewInit, AfterViewChecked, AfterContentInit {
   //tree
   public treeNodes: TreeNode[]; //场景树节点集
   public selectedNodes: TreeNode[];
@@ -44,6 +51,12 @@ export class LayerTreeComponent implements OnInit, AfterViewInit {
     private cesiumService: CesiumService
   ) {
     this.treeNodes = [];
+    this.selectedNodes = [];
+  }
+
+  ngOnInit() {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
   }
 
   /**
@@ -51,40 +64,43 @@ export class LayerTreeComponent implements OnInit, AfterViewInit {
    *
    * @memberof LayerTreeComponent
    */
-  ngOnInit() {}
+  ngAfterViewChecked() {}
   /**
    * 组件及其子组件初始化完成声明周期钩子函数
    *
    * @memberof LayerTreeComponent
    */
+  ngAfterContentInit() {}
   ngAfterViewInit() {
-    this.viewer = this.cesiumService.getViewer();
-    this.imageryLayers = this.viewer.imageryLayers;
+    setTimeout(() => {
+      this.viewer = this.cesiumService.getViewer();
+      this.imageryLayers = this.viewer.imageryLayers;
 
-    this.treeNodes = this.imageryLayers._layers.map(layer => {
-      return {
-        label: layer.imageryProvider.credit.text,
-        expandedIcon: "fa-folder-open",
-        collapsedIcon: "fa-folder",
-        leaf: true,
-        selectable: true
-      };
+      this.treeNodes = this.imageryLayers._layers.map(layer => {
+        return {
+          label: layer.imageryProvider.credit.text,
+          expandedIcon: "fa-folder-open",
+          collapsedIcon: "fa-folder",
+          leaf: true,
+          selectable: true
+        };
+      });
+      this.selectedNodes = this.treeNodes;
+      //注册图层监听事件
+      this.imageryLayers.layerAdded.addEventListener(
+        this.updateLayerTreeNodes,
+        this
+      );
+      this.imageryLayers.layerMoved.addEventListener(
+        this.updateLayerTreeNodes,
+        this
+      );
+      this.imageryLayers.layerRemoved.addEventListener(
+        this.updateLayerTreeNodes,
+        this
+      );
     });
-    //注册图层监听事件
-    this.imageryLayers.layerAdded.addEventListener(
-      this.updateLayerTreeNodes,
-      this
-    );
-    this.imageryLayers.layerMoved.addEventListener(
-      this.updateLayerTreeNodes,
-      this
-    );
-    this.imageryLayers.layerRemoved.addEventListener(
-      this.updateLayerTreeNodes,
-      this
-    );
   }
-
   updateLayerTreeNodes() {
     this.treeNodes = this.cesiumService
       .getViewer()
@@ -97,6 +113,7 @@ export class LayerTreeComponent implements OnInit, AfterViewInit {
           selectable: true
         };
       });
+    this.selectedNodes = this.treeNodes;
   }
   /**
    * 树节点选中事件处理函数
