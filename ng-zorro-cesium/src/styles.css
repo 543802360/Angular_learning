@@ -18,3 +18,13 @@ body {
 .cesium-viewer .cesium-widget-credits {
   display: none !important;
 }
+.navigation-controls {
+  top: 190px;
+}
+.compass {
+  top: 60px;
+}
+.distance-legend {
+  bottom: 0;
+  right: 60px;
+}
