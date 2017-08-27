@@ -31,6 +31,7 @@ import { MeasureComponent } from "./measure/measure.component";
 import { HelpComponent } from "./help/help.component";
 import { ObliquemodelComponent } from "./obliquemodel/obliquemodel.component";
 import { ChartsComponent } from "./charts/charts.component";
+import { MousepositionComponent } from './mouseposition/mouseposition.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ChartsComponent } from "./charts/charts.component";
     MeasureComponent,
     HelpComponent,
     ObliquemodelComponent,
-    ChartsComponent
+    ChartsComponent,
+    MousepositionComponent
   ],
   imports: [
     BrowserModule,
