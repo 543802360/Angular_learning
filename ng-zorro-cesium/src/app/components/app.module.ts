@@ -8,8 +8,13 @@ import { HttpModule } from "@angular/http";
 //ng-zorro
 import { NgZorroAntdModule } from "ng-zorro-antd";
 //primeng
-import { TreeModule, MenuModule, ContextMenuModule } from "primeng/primeng";
-
+import {
+  ContextMenuModule,
+  DialogModule,
+  MenuModule,
+  OverlayPanelModule,
+  TreeModule
+} from "primeng/primeng";
 //component
 import { AppComponent } from "./app.component";
 import { LayoutComponent } from "./layout/layout.component";
@@ -45,9 +50,11 @@ import { ChartsComponent } from "./charts/charts.component";
   imports: [
     BrowserModule,
     ContextMenuModule,
+    DialogModule,
     FormsModule,
     HttpModule,
     MenuModule,
+    OverlayPanelModule,
     TreeModule,
     BrowserAnimationsModule,
     NgZorroAntdModule.forRoot()
