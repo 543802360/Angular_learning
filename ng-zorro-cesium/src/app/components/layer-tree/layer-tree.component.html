@@ -1,0 +1,55 @@
+<p-tree [value]="treeNodes" selectionMode="checkbox" [(selection)]="selectedNodes" [contextMenu]="cm" [propagateSelectionUp]="true"
+  [propagateSelectionDown]="true" (onNodeSelect)="treeNodeSelect($event)" (onNodeUnselect)="treeNodeUnSelect($event)" (onNodeContextMenuSelect)="treeNodeContextMenuSelect($event)">
+</p-tree>
+<!--弹出菜单-->
+<p-contextMenu #cm [model]="items"></p-contextMenu>
+<!--图层属性设置对话框-->
+<nz-modal [nzVisible]="isVisible" [nzTitle]="subtitle" [nzContent]="modalContent" (nzOnCancel)="handleCancel($event)" (nzOnOk)="handleOk($event)">
+  <ng-template #modalContent>
+    <!-- 透明度 -->
+    <div nz-row>
+      <div nz-col [nzSpan]="4">
+        透明度:
+      </div>
+      <div nz-col [nzSpan]="20">
+        <nz-slider [nzMin]="0.0" [nzMax]="1.0" [nzStep]="0.1" [(ngModel)]="alphaValue" (ngModelChange)="onAlphaChange($event)"></nz-slider>
+      </div>
+    </div>
+    <!-- 亮度 -->
+    <div nz-row>
+      <div nz-col [nzSpan]="4">
+        亮&nbsp;&nbsp;&nbsp;度:
+      </div>
+      <div nz-col [nzSpan]="20">
+        <nz-slider [nzMin]="0.0" [nzMax]="1.0" [nzStep]="0.1" [(ngModel)]="brightnessValue" (ngModelChange)="onBrightnessChange($event)"></nz-slider>
+      </div>
+    </div>
+    <!-- 灰度 -->
+    <div nz-row>
+      <div nz-col [nzSpan]="4">
+        灰&nbsp;&nbsp;&nbsp;度:
+      </div>
+      <div nz-col [nzSpan]="20">
+        <nz-slider [nzMin]="0.0" [nzMax]="1.0" [nzStep]="0.1" [(ngModel)]="gammaValue" (ngModelChange)="onGammaChange($event)"></nz-slider>
+      </div>
+    </div>
+    <!-- 对比度 -->
+    <div nz-row>
+      <div nz-col [nzSpan]="4">
+        对比度:
+      </div>
+      <div nz-col [nzSpan]="20">
+        <nz-slider [nzMin]="0.0" [nzMax]="1.0" [nzStep]="0.1" [(ngModel)]="contrastValue" (ngModelChange)="onContrastChange($event)"></nz-slider>
+      </div>
+    </div>
+    <!-- 饱和度 -->
+    <div nz-row>
+      <div nz-col [nzSpan]="4">
+        饱和度:
+      </div>
+      <div nz-col [nzSpan]="20">
+        <nz-slider [nzMin]="0.0" [nzMax]="1.0" [nzStep]="0.1" [(ngModel)]="saturationValue" (ngModelChange)="onSaturationChange($event)"></nz-slider>
+      </div>
+    </div>
+  </ng-template>
+</nz-modal>

@@ -3,7 +3,9 @@ import {
   OnInit,
   AfterViewInit,
   AfterViewChecked,
-  AfterContentInit
+  AfterContentInit,
+  ElementRef,
+  ViewChild
 } from "@angular/core";
 import { TreeNode, MenuItem } from "primeng/primeng";
 
@@ -12,40 +14,30 @@ import { CesiumService } from "../../services/cesium/cesium.service";
 
 @Component({
   selector: "qk-earth-layer-tree",
-  template: `
-     <p-tree [value]="treeNodes" selectionMode="checkbox"
-      [(selection)]="selectedNodes"
-      [contextMenu]="cm"
-      [propagateSelectionUp]="true"
-      [propagateSelectionDown]="true"
-      (onNodeSelect)="treeNodeSelect($event)"
-      (onNodeUnselect)="treeNodeUnSelect($event)">
-      </p-tree>
-      <p-contextMenu #cm [model]="items"></p-contextMenu>
-  `,
+  templateUrl: "./layer-tree.component.html",
   styleUrls: ["./layer-tree.component.css"]
 })
 export class LayerTreeComponent
   implements OnInit, AfterViewInit, AfterViewChecked, AfterContentInit {
   //tree
-  public treeNodes: TreeNode[]; //场景树节点集
-  public selectedNodes: TreeNode[];
+  treeNodes: TreeNode[]; //场景树节点集
+  selectedNodes: TreeNode[];
 
   //menu
-  public items: MenuItem[] = [
-    { label: "图层置顶", icon: "fa-plus" },
-    { label: "图层下移", icon: "fa-download" },
-    { label: "图层上移", icon: "fa-refresh" },
-    { label: "移除图层", icon: "fa-refresh" },
+  items: MenuItem[];
+  // cesium related
+  viewer: any;
+  imageryLayers: any;
+  //
+  isVisible: boolean = false;
+  subtitle: string = "图层属性设置";
+  selectedImageryLayer: any;
+  alphaValue: number = 1.0; //透明度
+  brightnessValue: number = 1.0; //亮度
+  contrastValue: number = 1.0; //对比度
+  gammaValue: number = 1.0; //灰度
+  saturationValue: number = 1.0; //饱和度
 
-    {
-      label: "设置图层样式",
-      icon: "fa-refresh"
-    }
-  ];
-
-  public viewer: any;
-  public imageryLayers: any;
   constructor(
     private layerService: LayerService,
     private cesiumService: CesiumService
@@ -72,10 +64,11 @@ export class LayerTreeComponent
    */
   ngAfterContentInit() {}
   ngAfterViewInit() {
+    //
     setTimeout(() => {
       this.viewer = this.cesiumService.getViewer();
       this.imageryLayers = this.viewer.imageryLayers;
-
+      // 获取当前viewer中所有ImageryLayer
       this.treeNodes = this.imageryLayers._layers.map(layer => {
         return {
           label: layer.imageryProvider.credit.text,
@@ -99,21 +92,47 @@ export class LayerTreeComponent
         this.updateLayerTreeNodes,
         this
       );
+      //初始化弹出菜单
+      this.items = [
+        { label: "图层置顶", icon: "fa-plus" },
+        { label: "图层下移", icon: "fa-download" },
+        { label: "图层上移", icon: "fa-refresh" },
+        { label: "移除图层", icon: "fa-refresh" },
+
+        {
+          label: "设置图层样式",
+          icon: "fa-refresh",
+          command: event => {
+            //console.log(event);
+            this.isVisible = true;
+          }
+        }
+      ];
+      //
     });
   }
-  updateLayerTreeNodes() {
-    this.treeNodes = this.cesiumService
-      .getViewer()
-      .imageryLayers._layers.map(layer => {
-        return {
-          label: layer.imageryProvider.credit.text,
-          expandedIcon: "fa-folder-open",
-          collapsedIcon: "fa-folder",
-          leaf: true,
-          selectable: true
-        };
-      });
-    this.selectedNodes = this.treeNodes;
+
+  handleCancel(e) {
+    this.isVisible = false;
+  }
+  handleOk(e) {
+    this.isVisible = false;
+  }
+
+  onAlphaChange(alpha: number) {
+    this.selectedImageryLayer.alpha = this.alphaValue;
+  }
+  onBrightnessChange(brightness: number) {
+    this.selectedImageryLayer.brightness = this.brightnessValue;
+  }
+  onGammaChange(gamma: number) {
+    this.selectedImageryLayer.gamma = this.gammaValue;
+  }
+  onSaturationChange(saturation: number) {
+    this.selectedImageryLayer.saturation = this.saturationValue;
+  }
+  onContrastChange(contrast: number) {
+    this.selectedImageryLayer.contrast = this.contrastValue;
   }
   /**
    * 树节点选中事件处理函数
@@ -142,14 +161,29 @@ export class LayerTreeComponent
       this.layerService.getImageryLayerByName(event.node.label).show = false;
     }
   }
+  treeNodeContextMenuSelect(event) {
+    console.log(event);
+    let imageryLayerName = event.node.label;
+    this.selectedImageryLayer = this.layerService.getImageryLayerByName(
+      imageryLayerName
+    );
+  }
 
-  // getLayerByName(layerName: string) {
-  //   let layer = null;
-  //   this.viewer.imageryLayers._layers.forEach(el => {
-  //     if (el.imageryProvider.credit.text === layerName) {
-  //       layer = el;
-  //     }
-  //   });
-  //   return layer;
-  // }
+  /**
+   * 更新图层树节点集合
+   */
+  updateLayerTreeNodes() {
+    this.treeNodes = this.cesiumService
+      .getViewer()
+      .imageryLayers._layers.map(layer => {
+        return {
+          label: layer.imageryProvider.credit.text,
+          expandedIcon: "fa-folder-open",
+          collapsedIcon: "fa-folder",
+          leaf: true,
+          selectable: true
+        };
+      });
+    this.selectedNodes = this.treeNodes;
+  }
 }
