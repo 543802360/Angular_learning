@@ -22,6 +22,7 @@ export class ViewerFactoryService {
     let viewer = null;
     if (options) {
       viewer = new this.cesium.Viewer(container, options);
+      viewer.extend(Cesium.viewerCesiumNavigationMixin, {});
     } else {
       //默认参数
     }
