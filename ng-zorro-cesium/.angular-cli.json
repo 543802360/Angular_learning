@@ -30,7 +30,10 @@
         "../node_modules/primeng/resources/themes/omega/theme.css",
         "styles.css"
       ],
-      "scripts": ["../node_modules/cesium/Build/Cesium/Cesium.js"],
+      "scripts": [
+        "../node_modules/cesium/Build/Cesium/Cesium.js",
+        "./assets/js/viewerCesiumNavigationMixin.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
