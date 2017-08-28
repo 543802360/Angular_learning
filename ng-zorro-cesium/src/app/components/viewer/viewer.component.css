@@ -5,3 +5,14 @@ qk-earth-viewer {
   padding: 0;
   border: 0;
 }
+qk-earth-mouseposition {
+  position: absolute;
+  bottom: 0px;
+  left: 10PX;
+  width: auto;
+  height: 20px;
+  background-color: transparent;
+  font-size: 14px;
+  color: yellow;
+  text-align: center;
+}
