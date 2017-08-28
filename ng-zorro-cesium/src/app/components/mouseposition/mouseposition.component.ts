@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'qk-earth-mouseposition',
-  templateUrl: './mouseposition.component.html',
-  styleUrls: ['./mouseposition.component.css']
+  selector: "qk-earth-mouseposition",
+  template: `
+  <div qkEarthMouseposition></div>
+  `,
+  styleUrls: ["./mouseposition.component.css"]
 })
 export class MousepositionComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
