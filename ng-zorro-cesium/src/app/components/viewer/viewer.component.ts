@@ -3,7 +3,9 @@ import { LayerService } from "../../services/layer/layer.service";
 @Component({
   selector: "qk-earth-viewer",
   template: `
-    <qkEarthCesiumViewer [options]="options"></qkEarthCesiumViewer>
+    <qkEarthCesiumViewer [options]="options">
+      <qk-earth-mouseposition></qk-earth-mouseposition>
+    </qkEarthCesiumViewer>
   `,
   styleUrls: ["./viewer.component.css"]
 })
