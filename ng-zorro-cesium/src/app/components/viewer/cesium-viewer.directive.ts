@@ -6,7 +6,6 @@ import {
   Input,
   OnInit
 } from "@angular/core";
-
 @Directive({
   selector: "qkEarthCesiumViewer"
 })
