@@ -9,7 +9,9 @@ Angular搭建Cesium开发平台，使用ng-zorro组件可和primeng组件库对C
 - layout组件
 - viewer组件
 - scenesetting组件
-- layertree组件（未完成）
+- layertree组件
+- overlayerTree组件
+- mouseposition组件
 
 ## 服务
 
