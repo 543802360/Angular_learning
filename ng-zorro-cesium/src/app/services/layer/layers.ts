@@ -1,5 +1,5 @@
-//const baseHref = "/demo/ng-zorro-cesium/";
-const baseHref = "/";
+const baseHref = "/demo/ng-zorro-cesium/";
+//const baseHref = "/";
 const tdtImgProvider = new Cesium.WebMapTileServiceImageryProvider({
   url:
     "http://{s}.tianditu.com/img_w/wmts?service=WMTS&version=1.0.0&request=GetTile&tilematrix={TileMatrix}&layer=img&style={style}&tilerow={TileRow}&tilecol={TileCol}&tilematrixset={TileMatrixSet}&format=tiles",
